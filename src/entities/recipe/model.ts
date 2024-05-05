@@ -1,3 +1,5 @@
+export type TRecipeDifficulty = "Easy" | "Medium" | "Hard";
+
 export interface IRecipe {
     id: number;
     name: string;
@@ -6,7 +8,7 @@ export interface IRecipe {
     prepTimeMinutes: number;
     cookTimeMinutes: number;
     servings: number;
-    difficulty: string;
+    difficulty: TRecipeDifficulty;
     cuisine: string;
     caloriesPerServing: number;
     tags: string[];
@@ -27,8 +29,16 @@ export interface IResponse {
 export interface IRecipesState {
     currentRecipe?: IRecipe;
     recipes: IRecipe[];
+    filteredRecipes: IRecipe[];
+    currentPageIndex: number;
+    loading: boolean;
+    error?: string;
 }
 
 export const initialState: IRecipesState = {
   recipes: [],
+  filteredRecipes: [],
+  currentPageIndex: 1,
+  loading: false,
+  error: "",
 }

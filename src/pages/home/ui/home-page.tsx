@@ -1,50 +1,24 @@
-import { getAll } from '@/entities/recipe';
-import { AppDispatch, RootState } from '@/entities/store';
+import { IRecipe } from '@/entities/recipe';
+import { RootState } from '@/entities/store';
 import { Card } from '@/shared/ui/card';
-import { Label } from '@/shared/ui/label';
-import { Select } from '@/shared/ui/select';
-import React, { useMemo } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import Menu from '@/widgets/menu/ui';
+import { RecipesList } from '@/widgets/recipe';
+import { useSelector } from 'react-redux';
 
 export const HomePage = () => {
-    const dispatch = useDispatch<AppDispatch>()
-    const recipes = useSelector((state: RootState) => state.recipe.recipes)
-
-    useMemo(() => {
-        dispatch(getAll())
-    }, [])
-
-    console.log(recipes)
+    const filteredRecipes: IRecipe[] = useSelector((state: RootState) => state.recipe.filteredRecipes)
 
     return (
-        <div className="grid grid-cols-4 w-full">
-            <Card className="col-span-1 p-6 h-screen bg-white flex-col justify-start items-start gap-12 inline-flex">
-                <div className="p-6 flex-col justify-start items-start gap-6 inline-flex">
-                    <div className="w-full h-40 flex-col justify-start items-start inline-flex"/>
-                    <p className="text-black text-sm font-normal font-['Roboto'] leading-[18px]">
-                        В нашей жизни, когда время становится все более ценным ресурсом, задача планирования приема пищи становится все более сложной.
-                        <br/>
-                        <br/>
-                        Часто мы сталкиваемся с дилеммой: что приготовить на завтрак, обед или ужин? Каким образом мы можем легко и быстро определиться с выбором блюда и не тратить много времени на принятие этого решения?
-                        <br/>
-                        <br/>
-                        Наш сервис поможет: выбирайте параметры - и вперед!
-                    </p>
+        <div className="grid 2xl:grid-cols-4 md:grid-cols-3 sm:grid-cols-1 w-full gap-3 mt-3">
+            <Menu />
+            <div className="2xl:col-span-3 md:col-span-2 sm:grid-cols-1">
+                <Card className="w-full px-6 py-4  justify-start items-center gap-2.5 inline-flex">
+                    <h3 className="text-black/90 text-xl font-medium leading-normal">Найденные рецепты</h3>
+                    <span className="text-black/40 text-sm font-normal leading-snug">{filteredRecipes.length}</span>
+                </Card>
+                <div className='bg-zinc-200'>
+                    <RecipesList />
                 </div>
-
-                <div className="flex flex-col gap-4">
-                    <div>
-                        <Label>
-                            Кухня:
-                        </Label>
-                        <Select>
-                            
-                        </Select>
-                    </div>
-                </div>
-            </Card>
-            <div className="col-span-3">
-                че за бред
             </div>
         </div>
     );

@@ -1,11 +1,10 @@
 import { Card } from '@/shared/ui/card';
-import React from 'react';
-
-export const Header = () => {
+import React, { ReactNode } from 'react';
+export const Header = ({ children }: { children: ReactNode }) => {
     return (
         <header className="w-full">
-            <Card>
-                <h1 className="text-black/opacity-90 text-2xl font-medium leading-7">Сборник рецептов из разных стран мира</h1>
+            <Card className="px-6 py-4 flex gap-4 items-center">
+                {children}
             </Card>
         </header>
     );
