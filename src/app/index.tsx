@@ -1,9 +1,9 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { RouterDomProvider } from '@/entities/router'
-import { StoreProvider } from '@/entities/store'
-import "./globals.css"
-import { Toaster } from '@/shared/ui/sonner'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { RouterDomProvider } from '@/entities/router';
+import { StoreProvider } from '@/entities/store';
+import './globals.css';
+import { Toaster } from '@/shared/ui/sonner';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -12,4 +12,4 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       <Toaster />
     </StoreProvider>
   </React.StrictMode>,
-)
+);
